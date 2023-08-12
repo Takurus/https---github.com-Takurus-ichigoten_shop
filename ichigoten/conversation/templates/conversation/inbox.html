@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+<h1 class="mb-6 text-3xl">Inbox</h1>
+
+<div class="space-y-6">
+    {% for conversation in conversations %}
+        <a href="{% url 'conversation:detail' pk=conversation.pk %}">  <!-- Update the URL reference -->
+            <div class="p-6 flex bg-pink-100 rounded-xl">
+                <div class="pr-6">
+                    <img src="{{ conversation.item.image.url }}" class="w-20 rounded-xl">
+                </div>
+
+                <div>
+                    <p class="mb-4"><strong>{{ conversation.item.name }}</strong> | {{ conversation.modified_at }}</p>
+                    <p>{{ conversation.record }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}
